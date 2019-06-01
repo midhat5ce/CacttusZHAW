@@ -1,0 +1,123 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Course;
+use Illuminate\Http\Request;
+use App\Professor;
+use App\Department;
+
+class CourseController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $courses = Course::all();
+        return view('admin.course.list', compact('courses'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('admin.course.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'coursename' => ['required', 'string', 'unique:courses'],
+            'department_id' => ['required'],
+            'semester_id' => ['required']
+        ]);
+        Course::create($data);
+
+        return back()->withSucess('Course added successfully!');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Course  $course
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Course $course)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Course  $course
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Course $course)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Course  $course
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Course $course)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Course  $course
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Course $course)
+    {
+        //
+    }
+
+    // other methods
+    public function linkForm()
+    {
+        $webdevs = Course::where('department_id', 1)->get();
+        $sysadmins = Course::where('department_id', 2)->get();
+        $professors = Professor::all();
+        return view('admin.course.connect', compact('sysadmins', 'webdevs', 'professors'));
+    }
+
+    public function link(Request $request)
+    {
+        $request->validate([
+            'professor_id' => ['required'],
+            'course_id' => ['required'],
+            'startdate' => ['required'],
+            'finishdate' => ['required']
+        ]);
+        $professor = Professor::findorfail($request->professor_id);
+        $course = Course::findorfail($request->course_id);
+        if (!$course->professor->contains($professor->id)) {
+            $course->professor()->attach($professor, ['startdate' => $request->startdate, 'finishdate' => $request->finishdate]);
+        } else {
+            return back()->withError('Professor "'.$professor->firstname.' '.$professor->lastname.'" already is connected with "'.$course->coursename.'"');
+        }
+        
+        return back()->withSucess('You have successfully linked "'.$professor->firstname.' '.$professor->lastname.'" with "'.$course->coursename.'"');
+    }
+}

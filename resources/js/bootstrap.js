@@ -11,6 +11,20 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+    require('./perfect-scrollbarminified');
+    require('./sparkline/sparkline');
+    require('./waves/waves');
+    require('./sidebarmenu');
+    require('./customminified');
+    require('./datatables/datatable-checkbox');
+    require('./jquerymulticheck');
+    require('./datatables/datatablesminified');
+    require('./datatables/custom');
+    require('./dateformats/jqueryinputmaskbundle');
+    require('./dateformats/maskinit');
+    require('./select2/select2fullmin');
+    require('./select2/custom');
+    
 } catch (e) {}
 
 /**

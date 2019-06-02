@@ -5,14 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon.png')}}">
     <title>Matrix Template - The Ultimate Multipurpose admin template</title>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/select2/dist/css/select2.min.css')}}">
+    <link rel="stylesheet" href="/css/app.css">
     <link href="{{asset('dist/css/style.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
-    {{-- select --}}
 
 
 </head>
@@ -174,34 +170,7 @@
         </div>
 
     </div>
-
-    <script src="{{asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{asset('assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
-    <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js')}}"></script>
-    <script src="{{asset('assets/extra-libs/sparkline/sparkline.js')}}"></script>
-    <!--Wave Effects -->
-    <script src="{{asset('dist/js/waves.js')}}"></script>
-    <!--Menu sidebar -->
-    <script src="{{asset('dist/js/sidebarmenu.js')}}"></script>
-    <!--Custom JavaScript -->
-    <script src="{{asset('dist/js/custom.min.js')}}"></script>
-    {{-- datatables --}}
-    <script src="{{asset('assets/extra-libs/multicheck/datatable-checkbox-init.js')}}"></script>
-    <script src="{{asset('assets/extra-libs/multicheck/jquery.multicheck.js')}}"></script>
-    <script src="{{asset('assets/extra-libs/DataTables/datatables.min.js')}}"></script>
-    <script src="{{asset('assets/extra-libs/customdatatable.js')}}"></script>
-
-    {{-- Date formats --}}
-    <script src="{{asset('assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>
-    <script src="{{asset('dist/js/pages/mask/mask.init.js')}}"></script>
-
-    {{-- Selects --}}
-    <script src="{{asset('assets/libs/select2/dist/js/select2.full.min.js')}}"></script>
-    <script src="{{asset('assets/libs/select2/dist/js/select2.min.js')}}"></script>
-    <script src="{{asset('assets/libs/select2/dist/js/customselect.js')}}"></script>
-
+    <script src="/js/app.js"></script>
 </body>
 
 </html>

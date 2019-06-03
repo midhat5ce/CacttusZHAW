@@ -147,7 +147,7 @@
                                         Professor/Course
                                     </span></a>
                             </li>
-                            <li class="sidebar-item"><a href="authentication-register.html" class="sidebar-link"><i
+                            <li class="sidebar-item"><a href="#" class="sidebar-link"><i
                                         class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Student/Professor
                                     </span></a></li>
                         </ul>

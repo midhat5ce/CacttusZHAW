@@ -11,7 +11,6 @@ use App\Admin;
 
 class AdminLoginController extends Controller
 {
-
     use AuthenticatesUsers;
 
     /**
@@ -50,27 +49,8 @@ class AdminLoginController extends Controller
 
     public function logout(Request $request)
     {
-
         Auth::guard('admin')->logout();
         $request->session()->invalidate();
         return redirect()->route('admin.login.form');
-    }
-
-    public function showWriterLoginForm()
-    {
-        return view('auth.login', ['url' => 'writer']);
-    }
-
-    public function writerLogin(Request $request)
-    {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
-        ]);
-
-        if (Auth::guard('writer')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return redirect()->intended('/writer');
-        }
-        return back()->withInput($request->only('email', 'remember'));
     }
 }

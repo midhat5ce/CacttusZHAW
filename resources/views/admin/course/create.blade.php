@@ -7,7 +7,7 @@
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">add a subject</li>
                     </ol>
                 </nav>
@@ -35,49 +35,45 @@
                 <div class="form-group row">
                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Course Name</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control {{$errors->has('coursename') ? 'is-invalid' : ''}}" name="coursename" id="fname"
-                            placeholder="Course Name Here">
+                        <input type="text" class="form-control {{$errors->has('coursename') ? 'is-invalid' : ''}}"
+                            name="coursename" id="fname" placeholder="Course Name Here">
                         @if ($errors->has('coursename'))
-                            <div class="invalid-feedback">
-                                {{$errors->first('coursename')}}
-                            </div>
+                        <div class="invalid-feedback">
+                            {{$errors->first('coursename')}}
+                        </div>
                         @endif
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-3 text-right control-label col-form-label">Department Name</label>
                     <div class="col-sm-9">
+                        @foreach ($department as $depname)
                         <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" id="customControlValidation1"
-                                name="department_id" value="1">
-                            <label class="custom-control-label" for="customControlValidation1">Web & App Development</label>
+                            <input type="radio" class="custom-control-input"
+                                id="customControlValidation.{{$depname->id}}" name="department_id"
+                                value="{{$depname->id}}">
+                            <label class="custom-control-label"
+                                for="customControlValidation.{{$depname->id}}">{{$depname->departmentname}}</label>
                         </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" id="customControlValidation2"
-                                name="department_id" value="2">
-                            <label class="custom-control-label" for="customControlValidation2">System
-                                Administrator</label>
-                        </div>
+                        @endforeach
                         @if ($errors->has('department_id'))
-                            <p class="text-danger">please select above one of department options</p>
+                        <p class="text-danger">please select above one of department options</p>
                         @endif
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-3 text-right control-label col-form-label">Semester</label>
                     <div class="col-sm-9">
+                        @foreach ($semester as $item)
                         <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" id="customControlValidation3"
-                                name="semester_id" value="1">
-                            <label class="custom-control-label" for="customControlValidation3">Fall</label>
+                            <input type="radio" class="custom-control-input" id="customControlValidation.{{$item->semestername}}"
+                                name="semester_id" value="{{$item->id}}">
+                            <label class="custom-control-label"
+                                for="customControlValidation.{{$item->semestername}}">{{$item->semestername}}</label>
                         </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" id="customControlValidation4"
-                                name="semester_id" value="2">
-                            <label class="custom-control-label" for="customControlValidation4">Spring</label>
-                        </div>
+                        @endforeach
                         @if ($errors->has('semester_id'))
-                            <p class="text-danger">please select above one of semester options</p>
+                        <p class="text-danger">please select above one of semester options</p>
                         @endif
                     </div>
                 </div>

@@ -6,6 +6,7 @@ use App\Course;
 use Illuminate\Http\Request;
 use App\Professor;
 use App\Department;
+use App\Semester;
 
 class CourseController extends Controller
 {
@@ -27,7 +28,9 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('admin.course.create');
+        $semester = Semester::all();
+        $department = Department::all();
+        return view('admin.course.create', compact('semester', 'department'));
     }
 
     /**
@@ -46,51 +49,6 @@ class CourseController extends Controller
         Course::create($data);
 
         return back()->withSucess('Course added successfully!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Course  $course
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Course $course)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Course  $course
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Course $course)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Course  $course
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Course $course)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Course  $course
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Course $course)
-    {
-        //
     }
 
     // other methods

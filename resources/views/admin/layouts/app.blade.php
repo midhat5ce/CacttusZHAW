@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon.png')}}">
     <title>Matrix Template - The Ultimate Multipurpose admin template</title>
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link href="{{asset('dist/css/style.min.css')}}" rel="stylesheet">
 
 
@@ -170,7 +170,7 @@
         </div>
 
     </div>
-    <script src="/js/app.js"></script>
+    <script src="{{asset('js/app.js')}}"></script>
 </body>
 
 </html>

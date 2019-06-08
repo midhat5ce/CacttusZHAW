@@ -18,7 +18,8 @@
 @if (Session::has('sucess'))
 <div class="col-md-12">
     <div class="mr-2 ml-2 mt-3 alert alert-info alert-dismissible fade show" role="alert">
-        <strong>Success!</strong> {{Session::get('sucess')}} <a href="{{route('admin.student.list')}}" class="ml-2">go to
+        <strong>Success!</strong> {{Session::get('sucess')}} <a href="{{route('admin.student.list')}}" class="ml-2">go
+            to
             list of students!</a>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -98,18 +99,13 @@
                         <div class="form-group">
                             <label class="text-right control-label col-form-label">Department*</label>
                             <div class="col-sm-9">
+                                @foreach ($departments as $dep)
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="customControlValidation1"
-                                        name="department_id" value="1">
-                                    <label class="custom-control-label" for="customControlValidation1">System
-                                        Administrator</label>
+                                    <input type="radio" class="custom-control-input" id="customControlValidation{{$dep->id}}"
+                                        name="department_id" value="{{$dep->id}}">
+                                    <label class="custom-control-label" for="customControlValidation{{$dep->id}}">{{$dep->departmentname}}</label>
                                 </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="customControlValidation2"
-                                        name="department_id" value="2">
-                                    <label class="custom-control-label" for="customControlValidation2">Web
-                                        Development</label>
-                                </div>
+                                @endforeach
                                 @if ($errors->has('department_id'))
                                 <p class="text-danger">please select above one of department options</p>
                                 @endif

@@ -64,14 +64,12 @@ class CourseController extends Controller
     {
         $request->validate([
             'professor_id' => ['required'],
-            'course_id' => ['required'],
-            'startdate' => ['required'],
-            'finishdate' => ['required']
+            'course_id' => ['required']
         ]);
         $professor = Professor::findorfail($request->professor_id);
         $course = Course::findorfail($request->course_id);
         if (!$course->professor->contains($professor->id)) {
-            $course->professor()->attach($professor, ['startdate' => $request->startdate, 'finishdate' => $request->finishdate]);
+            $course->professor()->attach($professor);
         } else {
             return back()->withError('Professor "'.$professor->firstname.' '.$professor->lastname.'" already is connected with "'.$course->coursename.'"');
         }

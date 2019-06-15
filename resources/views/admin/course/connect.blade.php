@@ -87,26 +87,6 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Start Date</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control date-inputmask {{$errors->has('startdate') ? 'is-invalid' : ''}}" id="date-mask" name="startdate"
-                            placeholder="enter start date">
-                        @if ($errors->has('startdate'))
-                        <p class="invalid-feedback">{{$errors->first('startdate')}}</p>
-                        @endif
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Finish Date</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control date-inputmask {{$errors->has('finishdate') ? 'is-invalid' : ''}}" name="finishdate" id="date-mask"
-                            placeholder="enter end date">
-                        @if ($errors->has('finishdate'))
-                        <div class="invalid-feedback">{{$errors->first('finishdate')}}</div>
-                        @endif
-                    </div>
-                </div>
             </div>
             <div class="border-top">
                 <div class="card-body">

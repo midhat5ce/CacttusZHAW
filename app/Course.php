@@ -20,6 +20,6 @@ class Course extends Model
 
     public function professor() 
     {
-        return $this->belongsToMany(Professor::class, 'professor_course')->withPivot('startdate', 'finishdate');
+        return $this->belongsToMany(Professor::class, 'professor_course');
     }
 }

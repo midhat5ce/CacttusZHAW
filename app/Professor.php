@@ -20,6 +20,6 @@ class Professor extends Authenticatable
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'professor_course')->withPivot('startdate', 'finishdate');
+        return $this->belongsToMany(Course::class, 'professor_course');
     }
 }

@@ -1,5 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
+@include('partials.header', $data = ['route' => route('admin.dashboard'), 'section' => 'List of courses', 'description' => 'courses registered datatable'])
+<br>
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Basic Datatable</h5>

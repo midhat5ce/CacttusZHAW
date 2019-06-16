@@ -1,8 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
+@include('partials.header', $data = ['route' => route('admin.dashboard'), 'section' => 'List of students', 'description' => 'professors registered datatable'])
+<br>
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Students Datatable</h5>
+        {{-- <h5 class="card-title">Students Datatable</h5> --}}
         <div class="table-responsive">
             <table id="zero_config" class="table table-striped table-bordered">
                 <thead>
@@ -25,7 +27,7 @@
                     </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
+                {{-- <tfoot>
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
@@ -33,7 +35,7 @@
                         <th>Department</th>
                         <th>Courses</th>
                     </tr>
-                </tfoot>
+                </tfoot> --}}
             </table>
         </div>
 

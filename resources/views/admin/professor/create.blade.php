@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
-<div class="page-breadcrumb">
+@include('partials.header', $data = ['route' => route('admin.dashboard'), 'section' => 'Add Professor', 'description' => 'register a professor'])
+{{-- <div class="page-breadcrumb">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
             <h4 class="page-title">Form | Professor</h4>
@@ -14,7 +15,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @if (Session::has('sucess'))
 <div class="col-md-12">
     <div class="mr-2 ml-2 mt-3 alert alert-info alert-dismissible fade show" role="alert">
@@ -29,8 +30,6 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-body wizard-content">
-            <h4 class="card-title">Register Professor</h4>
-            <h6 class="card-subtitle"></h6>
             <form action="{{route('admin.addProfessor.submit')}}" class="m-t-40" method="POST">
                 @csrf
                 <div>

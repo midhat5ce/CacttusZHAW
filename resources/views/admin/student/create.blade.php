@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
-<div class="page-breadcrumb">
+@include('partials.header', $data = ['route' => route('admin.dashboard'), 'section' => 'Add Student', 'description' => 'register a student'])
+{{-- <div class="page-breadcrumb">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
             <h4 class="page-title">Add a Student</h4>
@@ -14,7 +15,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @if (Session::has('sucess'))
 <div class="col-md-12">
     <div class="mr-2 ml-2 mt-3 alert alert-info alert-dismissible fade show" role="alert">

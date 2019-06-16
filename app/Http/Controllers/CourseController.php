@@ -54,10 +54,9 @@ class CourseController extends Controller
     // other methods
     public function linkForm()
     {
-        $webdevs = Course::where('department_id', 1)->get();
-        $sysadmins = Course::where('department_id', 2)->get();
+        $courses = Course::all();
         $professors = Professor::all();
-        return view('admin.course.connect', compact('sysadmins', 'webdevs', 'professors'));
+        return view('admin.course.connect', compact('courses', 'professors'));
     }
 
     public function link(Request $request)
@@ -73,7 +72,7 @@ class CourseController extends Controller
         } else {
             return back()->withError('Professor "'.$professor->firstname.' '.$professor->lastname.'" already is connected with "'.$course->coursename.'"');
         }
-        
+       
         return back()->withSucess('You have successfully linked "'.$professor->firstname.' '.$professor->lastname.'" with "'.$course->coursename.'"');
     }
 }

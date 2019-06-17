@@ -22,4 +22,9 @@ class Professor extends Authenticatable
     {
         return $this->belongsToMany(Course::class, 'professor_course');
     }
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'student_course_professor');
+    }
 }

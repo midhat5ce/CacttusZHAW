@@ -8,6 +8,10 @@ use App\Professor;
 use Illuminate\Support\Facades\Hash;
 use App\Department;
 use App\Student;
+use App\Course;
+use Illuminate\Support\Facades\DB;
+use App\Credential;
+use App\Grade;
 
 class AdminController extends Controller
 {
@@ -70,5 +74,47 @@ class AdminController extends Controller
     {
         $students = Student::all();
         return view('admin.student.list', compact('students'));
+    }
+
+    public function linkProfessorWithStudent(Department $department)
+    {
+        $courses = Course::where('department_id', $department->id)->get();
+        $professors = Professor::all();
+        $students = Student::all();
+        $stds = [];
+        return view('admin.link_student_professor_course', compact('courses', 'professors', 'students', 'stds', 'department'));
+    }
+
+    public function storeStudentProfessorCourse()
+    {
+        request()->validate([
+            'professor_id' => ['required'],
+            'course_id' => ['required'],
+            'students_id' => ['required']
+        ]);
+        $student_id = json_decode(request()->students_id);
+        $student_id = array_unique($student_id);
+        $professor = Professor::findorfail(request()->professor_id);
+        $course = Course::findorfail(request()->course_id);
+
+        $existsRow = DB::table('student_course_professor')
+        ->whereCourseId($course->id)
+        ->whereProfessorId($professor->id)
+        ->whereStudentId($student_id)
+        ->count() > 0;
+       
+        $existsCourseStudent = DB::table('student_course_professor')
+        ->whereCourseId($course->id)
+        ->whereStudentId($student_id)
+        ->count() > 0;
+
+        if (!$existsRow && !$existsCourseStudent) {
+            foreach ($student_id as $student) {
+                $professor->students()->attach($student, ['course_id' => $course->id]);
+            }
+            return back()->withSuccess($professor->firstname.' '.$professor->lastname.' has been asigned to teach '.$course->coursename.' to the students of department: '.$course->department->departmentname);
+        } else {
+            return back()->withError('Students of this department are already connected with '.$course->coursename.'!');
+        }
     }
 }

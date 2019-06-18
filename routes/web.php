@@ -53,7 +53,7 @@ Route::group(['prefix' => 'professor'], function () {
     Route::post('/logout', 'Auth\ProfessorLoginController@logout')->name('professor.logout');
     Route::group(['middleware' => 'auth:professor'], function () {
     Route::get('/', 'ProfessorController@index')->name('professor.profile');
-    
+
     Route::get('/list-students/{course}', 'ProfessorController@listStudents')->name('profesor.list.students');
     Route::get('/add-criteria/{course}', 'ProfessorController@addCriteria')->name('professor.add.criteria');
     Route::post('/add-criteria/{course}', 'ProfessorController@storeCriteria')->name('professor.store.criteria');
@@ -61,6 +61,11 @@ Route::group(['prefix' => 'professor'], function () {
     Route::patch('/add-grade/{course}/{student}', 'ProfessorController@storeGrade')->name('professor.store-grade');
     });
 });
+
+
+    Route::get('student/login', 'Auth\StudentLoginController@redirectToProvider');
+    Route::get('login/student/callback', 'Auth\StudentLoginController@handleProviderCallback');
+
 
 
 // Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');

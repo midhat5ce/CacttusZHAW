@@ -44,4 +44,10 @@ return [
         ],
     ],
 
+    'live' => [
+        'client_id' => env('LIVE_KEY'),
+        'client_secret' => env('LIVE_SECRET'),
+        'redirect' => env('LIVE_REDIRECT_URI')
+    ],
+
 ];

@@ -32,4 +32,8 @@ class Course extends Model
     {
         return $this->belongsToMany(Criteria::class, 'professor_course');
     }
+
+    public function grade() {
+        return $this->HasOne(Grade::class);
+    }
 }

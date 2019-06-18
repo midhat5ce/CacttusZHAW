@@ -8,6 +8,6 @@ class ProfessorController extends Controller
 {
     public function index()
     {
-        return view('professor.index');
+        return view('professor.indexs');
     }
 }

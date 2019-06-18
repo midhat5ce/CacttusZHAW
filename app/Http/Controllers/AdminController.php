@@ -10,7 +10,7 @@ use App\Department;
 use App\Student;
 use App\Course;
 use Illuminate\Support\Facades\DB;
-use App\Credential;
+use App\Criteria;
 use App\Grade;
 
 class AdminController extends Controller
@@ -111,6 +111,11 @@ class AdminController extends Controller
         if (!$existsRow && !$existsCourseStudent) {
             foreach ($student_id as $student) {
                 $professor->students()->attach($student, ['course_id' => $course->id]);
+                Grade::create([
+                    'professor_id' => $professor->id,
+                    'student_id' => $student,
+                    'course_id' => $course->id,
+                ]);
             }
             return back()->withSuccess($professor->firstname.' '.$professor->lastname.' has been asigned to teach '.$course->coursename.' to the students of department: '.$course->department->departmentname);
         } else {

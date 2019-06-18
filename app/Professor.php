@@ -27,4 +27,7 @@ class Professor extends Authenticatable
     {
         return $this->belongsToMany(Student::class, 'student_course_professor');
     }
+    public function criteria(){
+        return $this->belongsToMany(Criteria::class, "professor_course");
+    }
 }

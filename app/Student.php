@@ -23,4 +23,8 @@ class Student extends Authenticatable
     {
        return $this->belongsTo(Department::class);
     }
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
 }

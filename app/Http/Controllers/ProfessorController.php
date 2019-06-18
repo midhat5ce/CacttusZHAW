@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Course;
+use App\Criteria;
+use App\Student;
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class ProfessorController extends Controller
 {
@@ -59,4 +63,16 @@ class ProfessorController extends Controller
         }
     }
 
+    public function storeGrade(Course $course, Student $student)
+    {
+        $criteria_id = DB::table('professor_course')->whereProfessorId(auth()->user()->id)->whereCourseId($course->id)->select('criteria_id')->first();
+        DB::table('grades')->whereProfessorId(auth()->user()->id)->whereStudentId($student->id)->whereCourseId($course->id)->update([
+            'attendance' => request()->attendance,
+            'project' => request()->project,
+            'examination' => request()->examination,
+            'criteria_id' => $criteria_id->criteria_id
+        ]);
+
+        return back()->withSuccess('note added');
+    }
 }

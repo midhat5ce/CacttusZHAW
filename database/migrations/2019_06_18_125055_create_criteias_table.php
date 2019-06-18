@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfessorCourseTable extends Migration
+class CreateCriteriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateProfessorCourseTable extends Migration
      */
     public function up()
     {
-        Schema::create('professor_course', function (Blueprint $table) {
-            $table->unsignedBigInteger('course_id');
-            $table->unsignedBigInteger('professor_id');
-            $table->unsignedBigInteger('criteria_id')->nullable();
+        Schema::create('criterias', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('attendance');
+            $table->integer('project');
+            $table->integer('examination');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +29,6 @@ class CreateProfessorCourseTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('professor_course');
+        Schema::dropIfExists('criterias');
     }
 }

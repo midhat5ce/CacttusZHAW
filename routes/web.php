@@ -30,6 +30,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/add-professor', 'AdminController@createProfessor')->name('admin.addProfessor.submit');
         Route::get('/list-professors', 'AdminController@listProfessors')->name('admin.list.professors');
         Route::get('/show-professor/{professor}', 'AdminController@showProfessor')->name('admin.professor.show');
+        Route::get('/link-professor-student/{department}', 'AdminController@linkProfessorWithStudent')->name('admin.link.profstudent');
+        Route::post('/link-professor-student', 'AdminController@storeStudentProfessorCourse')->name('admin.link_student_professor.submit');
 
         // Course routes
         Route::get('add-course', 'CourseController@create')->name('admin.course.create');
@@ -51,6 +53,8 @@ Route::group(['prefix' => 'professor'], function () {
     Route::post('/logout', 'Auth\ProfessorLoginController@logout')->name('professor.logout');
     Route::group(['middleware' => 'auth:professor'], function () {
         Route::get('/', 'ProfessorController@index')->name('professor.profile');
+        Route::get('/add-criteria/{course}', 'ProfessorController@addCriteria')->name('professor.add.criteria');
+        Route::post('/add-criteria/{course}', 'ProfessorController@storeCriteria')->name('professor.store.criteria');
     });
 });
 

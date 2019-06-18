@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon.png')}}">
-    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
+    <title>Admin - SMS</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link href="{{asset('dist/css/style.min.css')}}" rel="stylesheet">
 
@@ -147,9 +147,25 @@
                                         Professor/Course
                                     </span></a>
                             </li>
-                            <li class="sidebar-item"><a href="#" class="sidebar-link"><i
-                                        class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Student/Professor
-                                    </span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                    href="javascript:void(0)" aria-expanded="false"><i
+                                        class="mdi mdi-playlist-plus"></i><span class="hide-menu">
+                                        Professor/Student</span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    @php
+                                    $departments = App\Department::all()
+                                    @endphp
+                                    @if ($departments->count() > 0)
+                                    @foreach ($departments as $department)
+                                    <li class="sidebar-item"><a
+                                            href="{{route('admin.link.profstudent', $department->id)}}"
+                                            class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span
+                                                class="hide-menu"> {{$department->departmentname}}
+                                            </span></a></li>
+                                    @endforeach
+                                    @endif
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                     </ul>
